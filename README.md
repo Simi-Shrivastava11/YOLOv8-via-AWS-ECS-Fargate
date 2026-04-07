@@ -1,3 +1,44 @@
+# YOLOv8 Object Detection via AWS Cloud Pipeline
+
+This repository presents a cloud-based deployment pipeline for **YOLOv8 object detection** on **AWS ECS/Fargate**, designed to evaluate how scalable cloud infrastructure performs relative to an EC2-style baseline under simulated live request traffic.
+
+The project focuses not only on model inference, but also on **containerized deployment**, **load-balanced serving**, **cloud monitoring**, and **performance evaluation** for real-time computer vision workloads.
+
+> **Note:** This repository is a fork of a team project. I am keeping it in my GitHub because it reflects my direct contribution to the inference and deployment side of the pipeline. This README highlights my role and the overall project context.
+
+## Project Overview
+
+Modern object detection systems often need more than a strong model—they need to handle changing traffic patterns, maintain stable latency, and scale efficiently. This project uses **YOLOv8** for object detection and deploys it in a cloud-native AWS environment to study:
+
+- inference latency
+- throughput under varying request patterns
+- resource utilization
+- behavior under load balancing and autoscaling
+- tradeoffs between scalable deployment and a simpler baseline setup
+
+The workload is based on the **COCO 2017 validation dataset**, submitted through a simulated live request stream.
+
+## My Contribution
+
+In this collaborative project, my primary contribution was on the **model serving and deployment preparation** side. I was responsible for:
+
+- setting up **YOLOv8 inference**
+- wrapping the model in a **lightweight Flask API**
+- **containerizing** the service with Docker
+- preparing the image for deployment through **Amazon ECR**
+
+## Project Goals
+
+The pipeline was designed to compare a cloud-native deployment against a baseline implementation while measuring:
+
+- **latency**
+- **throughput**
+- **resource utilization**
+- **tail latency under bursty load**
+- **cost-performance tradeoffs**
+
+The larger goal was to understand whether autoscaling and load balancing improve inference behavior for object detection workloads under changing demand.
+
 ## Run YOLOv8 using AWS ECS + Fargate Pipeline
 
 This project runs the object detection model YOLOv8 on an AWS ECS Fargate Pipeline levaraging the auto scaling and load balancing capabilities of AWS and comparing it to an AWS EC2 Baseline. The model is run against the COCO 2017 Validation data using a live simulation.
@@ -571,4 +612,27 @@ When you are done:
 1. On EC2, stop the Flask server by pressing `Ctrl + C` in the terminal where the inline `python3 - <<'PY'` command is running.
 2. In the AWS Console, **stop or terminate** the EC2 instance so it does not keep running and generating charges.
 
+## What This Repository Demonstrates
 
+This project highlights experience with:
+
+- ML model serving
+- API-based inference workflows
+- Dockerized deployment
+- AWS-based cloud infrastructure
+- scalable computer vision systems
+- evaluation of deployment behavior under simulated live load
+
+## Future Improvements
+
+Potential next steps include:
+
+- adding a more detailed architecture diagram
+- documenting benchmark results directly in the README
+- including screenshots of CloudWatch dashboards
+- comparing ECS/Fargate with other deployment options such as EC2-only or Lambda-based inference
+- adding CI/CD automation for deployment
+
+## Acknowledgment
+
+This was a collaborative course project. I maintain this fork to document my role in the inference-serving and containerization workflow while preserving the original team repository structure.
